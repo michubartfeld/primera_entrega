@@ -71,14 +71,10 @@ def vendedor_formulario(request):
 
 
 def formulario_busqueda(request):
-
     busqueda_formulario = CompradorBusquedaFormulario()
 
-
     if request.GET:
-        busqueda_formulario=CompradorBusquedaFormulario(request.GET)
-        if busqueda_formulario.is_valid():
-            compradores = Comprador.objects.filter(nombre=busqueda_formulario["criterio"]).all()
+        compradores = Comprador.objects.filter(nombre=request.GET["criterio"]).all()
 
     else:
         compradores = []
